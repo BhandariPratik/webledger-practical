@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "practical-test",
+  "main": "server.js",
+  "scripts": {
+    "test": "test.js",
+    "start":"nodemon server.js"
+  },
+  "author": "Pratik",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
