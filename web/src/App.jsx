@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import Login from "./Components/login";
+import Dashboard from "./Components/dashboard";
+import ProtectedRoute from "./Components/protected.routes";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  // const { user,isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
+  // console.log("isAuthneticated----->",isAuthenticated)
+  // console.log("user------>",user)
+
+  // React.useEffect(() => {
+  //   if (!isAuthenticated && !isLoading) {
+  //     loginWithRedirect();
+  //   }
+  // }, []);
+
+  // if (isLoading) return <div>Loading...</div>;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        {/* <Route path="/dashbaord" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} /> */}
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+export default App;
