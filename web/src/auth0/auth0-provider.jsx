@@ -4,7 +4,7 @@
 //   const domain = import.meta.env.VITE_APP_AUTH0_DOMAIN;
 //   const clientId = import.meta.env.VITE_APP_AUTH0_CLIENT_ID;
 //   const redirectUri =import.meta.env.VITE_APP_REDIRECT_URI;
-//   const audience = import.meta.env.VITE_APP_AUTH0_AUDIENCE;
+//   const audience = 0mport.meta.env.VITE_APP_AUTH0_AUDIENCE;
 //   console.log("sddddddddddddddddddddd",domain,clientId,redirectUri,audience)
 
 //   return (

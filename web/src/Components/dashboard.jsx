@@ -1,36 +1,89 @@
-import React, { useState } from "react";
+import React, { useState, useEffect,useRef } from "react";
+import useApi from "../hook/useApi";
+import useRecipeStore from "../store/recipeStore.";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-    const [searchTerm, setSearchTerm] = useState("");
+    const { apiCall, loading, error } = useApi();
+    const [search, setSearch] = useState("");
+    const [recipes, setRecipes] = useState([]);
+    const { setRecipeId, recipeId } = useRecipeStore();
+    const navigate = useNavigate();
+    const ref = useRef(false);
 
-    const receipts = [
-        { id: 1, image: "https://via.placeholder.com/100", name: "Receipt 1", summary: "Summary 1" },
-        { id: 2, image: "https://via.placeholder.com/100", name: "Receipt 2", summary: "Summary 2" },
-        { id: 3, image: "https://via.placeholder.com/100", name: "Receipt 3", summary: "Summary 3" },
-        // Add more items as needed
-    ];
+    useEffect(() => {
+        if(ref.current){
+            fetchRecipes();
+        }
+        else{
+            ref.current = true;
+        }
+    }, []);
+    console.log('receiptId', recipeId)
 
-    const filteredReceipts = receipts.filter(receipt => receipt.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const fetchRecipes = async () => {
+        const params = {
+            query: search.trim(),
+            number: 12,
+        };
+        const response = await apiCall("GET", "/recipe/search", {}, params);
+        if (response.success && response.data) {
+            setRecipes(response.data?.data?.results);
+        } else {
+            setRecipes([]);
+        }
+    };
+
+    const handleNavigate = ((id) => {
+        setRecipeId(id)
+        navigate(`/recipeDetails`);
+    })
 
     return (
         <div className="min-h-screen bg-gray-100">
-            <div className="p-4">
-                <input
-                    type="text"
-                    placeholder="Search receipts..."
-                    className="border p-2 w-full mb-4"
-                    value={ searchTerm }
-                    onChange={ (e) => setSearchTerm(e.target.value) }
-                />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    { filteredReceipts.slice(0, 10).map((receipt) => (
-                        <div key={ receipt.id } className="bg-white p-4 shadow rounded">
-                            <img src={ receipt.image } alt={ receipt.name } className="w-full h-32 object-cover rounded" />
-                            <h3 className="text-lg font-bold mt-2">{ receipt.name }</h3>
-                            <p className="text-gray-600">{ receipt.summary }</p>
-                        </div>
-                    )) }
+            <div className="p-4 max-w-5xl mx-auto">
+                <div className="flex items-center gap-2 mb-6">
+                    <input
+                        type="text"
+                        placeholder="Search recipes..."
+                        className="border p-2 w-1/2 rounded"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <button
+                        onClick={() => fetchRecipes()}
+                        className="cursor-pointer bg-blue-500 px-4 py-2 text-white rounded"
+                        disabled={loading}
+                    >
+                        Search
+                    </button>
                 </div>
+                {loading ? (
+                    <div className="flex justify-center items-center h-screen">
+                        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+                    </div>
+                ) : recipes.length > 0 ? (
+                    <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 cursor-pointer">
+                            {recipes.map((recipe) => (
+                                <div key={recipe?.id} className="bg-white shadow-md rounded" onClick={() => handleNavigate(recipe.id)}>
+                                    <img
+                                        src={recipe?.image}
+                                        alt={recipe?.title}
+                                        className="w-full h-40 object-cover rounded-t"
+                                    />
+                                    <div className="p-4">
+                                        <h3 className="text-lg font-bold">{recipe?.title}</h3>
+                                    </div>
+                                </div>
+                            ))}
+
+
+                        </div>
+                    </>
+                ) : (
+                    <p className="text-center text-gray-600">No recipes found.</p>
+                )}
             </div>
         </div>
     );

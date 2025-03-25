@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/connection");
 
-const SavedReceipt = sequelize.define(
-  "SavedReceipt",
+const SavedRecipe = sequelize.define(
+  "SavedRecipe",
   {
     id: {
       type: DataTypes.UUID,
@@ -13,7 +13,7 @@ const SavedReceipt = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    receipt_id: {
+    recipe_id: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -23,4 +23,4 @@ const SavedReceipt = sequelize.define(
   }
 );
 
-module.exports = SavedReceipt;
+module.exports = SavedRecipe;
