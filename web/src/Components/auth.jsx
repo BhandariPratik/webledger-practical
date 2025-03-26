@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Auth = () => {
   const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
   const navigate = useNavigate();
 
@@ -30,4 +30,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Auth;

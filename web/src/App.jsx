@@ -1,11 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {Login} from "./components/login";
-import Dashboard from "./components/dashboard";
-import ProtectedRoute from "./components/protected.routes";
+
+// Routes
+import Auth from "./components/auth.jsx";
+import Dashboard from "./components/dashboard.jsx";
+import Recipedetails from "./components/recipe-details.jsx";
+
+//middleware 
+import ProtectedRoute from "./utils/protected.routes.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
-import Header from "./components/header";
-import Recipedetails from "./components/recipedetails";
+import Header from "./utils/Header.jsx";
 
 const App = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -15,7 +19,7 @@ const App = () => {
     <Router>
       { isAuthenticated && <Header /> }
       <Routes>
-        <Route path="/" element={ <Login /> } />
+        <Route path="/" element={ <Auth /> } />
         <Route path="/dashboard" element={ <ProtectedRoute><Dashboard /></ProtectedRoute> } />
         <Route path="/recipeDetails/" element={ <ProtectedRoute><Recipedetails /></ProtectedRoute> } />
       </Routes>

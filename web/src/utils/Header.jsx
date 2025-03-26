@@ -3,9 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = () => {
     const { user, logout } = useAuth0();
-
-    console.log("user", user);
-
+    // console.log("user", user);
     return (
         <header className="bg-amber-400 text-black p-4 shadow-md">
             <div className="container mx-auto flex justify-between items-center">
