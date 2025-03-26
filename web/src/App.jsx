@@ -17,7 +17,8 @@ const App = () => {
 
   return (
     <Router>
-      { isAuthenticated && <Header /> }
+      {/* { isAuthenticated && <Header /> } */}
+       <Header /> 
       {/* <Routes>
         <Route path="/" element={ <Auth /> } />
         <Route path="/dashboard" element={ <ProtectedRoute><Dashboard /></ProtectedRoute> } />
