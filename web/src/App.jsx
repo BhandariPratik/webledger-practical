@@ -2,9 +2,13 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Routes
-import Auth from "./components/auth.jsx";
-import Dashboard from "./components/dashboard.jsx";
-import Recipedetails from "./components/recipe-details.jsx";
+// import Auth from "./components/auth.jsx";
+// import Dashboard from "./components/dashboard.jsx";
+// import Recipedetails from "./components/recipe-details.jsx";
+import Auth from "@/components/auth.jsx";
+import Dashboard from "@/components/dashboard.jsx";
+import Recipedetails from "@/components/recipe-details.jsx";
+
 
 //middleware 
 import ProtectedRoute from "./utils/protected.routes.jsx";
