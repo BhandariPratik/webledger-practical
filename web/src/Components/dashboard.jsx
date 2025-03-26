@@ -15,9 +15,6 @@ const Dashboard = () => {
         if(ref.current){
             fetchRecipes();
         }
-        else{
-            ref.current = true;
-        }
     }, []);
     console.log('receiptId', recipeId)
 

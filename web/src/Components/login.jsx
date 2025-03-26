@@ -20,10 +20,11 @@ const Login = () => {
         Auth0 Authentication
       </h1>
       <button
-        onClick={ () => loginWithRedirect() }
+        disabled={isLoading}
+        onClick={() => loginWithRedirect()}
         className=" cursor-pointer bg-blue-400 text-white px-6 py-2 rounded-md text-lg font-semibold hover:bg-blue-700"
       >
-        { isLoading ? "Loading..." : "Log In" }
+       Log In
       </button>
     </div>
   );

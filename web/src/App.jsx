@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { useAuth0 } from "@auth0/auth0-react";
 import Login from "./components/login";
 import Dashboard from "./components/dashboard";
 import ProtectedRoute from "./components/protected.routes";
