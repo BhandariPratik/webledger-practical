@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Routes
-import Auth from "./components/auth.jsx";
-import Dashboard from "./components/dashboard.jsx";
-import Recipedetails from "./components/recipe-details.jsx";
+// import Auth from "./components/auth.jsx";
+// import Dashboard from "./components/dashboard.jsx";
+// import Recipedetails from "./components/recipe-details.jsx";
 
 //middleware 
 import ProtectedRoute from "./utils/protected.routes.jsx";
@@ -18,11 +18,11 @@ const App = () => {
   return (
     <Router>
       { isAuthenticated && <Header /> }
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={ <Auth /> } />
         <Route path="/dashboard" element={ <ProtectedRoute><Dashboard /></ProtectedRoute> } />
         <Route path="/recipeDetails/" element={ <ProtectedRoute><Recipedetails /></ProtectedRoute> } />
-      </Routes>
+      </Routes> */}
     </Router>
   );
 };
